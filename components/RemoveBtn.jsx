@@ -19,7 +19,7 @@ function RemoveBtn({ id }) {
   };
   return (
     <button onClick={removeTopic} className="text-red-400">
-      <HiOutlineTrash size={24} />
+      <h1>Remove</h1>
     </button>
   );
 }
