@@ -1,7 +1,5 @@
 "use client";
 
-// import React from "react";
-import { HiOutlineTrash } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 
 function RemoveBtn({ id }) {
@@ -9,7 +7,7 @@ function RemoveBtn({ id }) {
   const removeTopic = async () => {
     const confirmed = confirm("Are you sure you want to delete this topic?");
     if (confirmed) {
-      const res = await fetch(`http://localhost:3000/api/topics?id=${id}`, {
+      const res = await fetch(`http://localhost:3000/api/todo?id=${id}`, {
         method: "DELETE",
       });
       if (res.ok) {
