@@ -1,38 +1,25 @@
+"use client";
 import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
+import useSWR from "swr";
+import { splitCookiesString } from "next/dist/compiled/@edge-runtime/cookies";
 
-const getTopics = async () => {
-  try {
-    const res = await fetch("http://localhost:3000/api/todo", {
-      cache: "no-store",
-    });
+const fetcher = (url) => fetch(url).then((res) => res.json());
+export default function TopicsList() {
+  const URL = "http://localhost:3000/api/todo";
+  const { data: topics, error } = useSWR(URL, fetcher);
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch topics");
-    }
-
-    return res.json();
-  } catch (error) {
-    console.log("Error loading topics: ", error);
+  if (error) {
+    return <div>Error loading topics</div>;
   }
-};
 
-export default async function TopicsList() {
-  // const { topics } = await getTopics();
-  // console.log(topics)
-  const topics = [
-    {
-      _id: "1",
-      title: "Topic 1",
-      description: "This is topic 1",
-      createdAt: "2023-09-23T04:06:24.743Z",
-      updatedAt: "2023-09-23T04:27:31.622Z",
-    },
-  ];
+  if (!topics) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
-      {topics.map((topic) => (
+      {topics.topics.map((topic) => (
         <div
           key={topic._id}
           className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
