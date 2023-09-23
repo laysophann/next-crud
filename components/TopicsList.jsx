@@ -3,7 +3,7 @@ import RemoveBtn from "./RemoveBtn";
 
 const getTopics = async () => {
   try {
-    const res = await fetch("api/todo", {
+    const res = await fetch("http://localhost:3000/api/todo", {
       cache: "no-store",
     });
 
