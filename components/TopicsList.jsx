@@ -6,7 +6,7 @@ import { splitCookiesString } from "next/dist/compiled/@edge-runtime/cookies";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function TopicsList() {
-  const URL = `https://next-crud-a98id3puv-laysophann.vercel.app/api/todo`;
+  const URL = `/api/todo`;
   const { data: topics, error } = useSWR(URL, fetcher);
 
   if (error) {
