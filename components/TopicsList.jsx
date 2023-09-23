@@ -18,7 +18,17 @@ const getTopics = async () => {
 };
 
 export default async function TopicsList() {
-  const { topics } = await getTopics();
+  // const { topics } = await getTopics();
+  // console.log(topics)
+  const topics = [
+    {
+      _id: "1",
+      title: "Topic 1",
+      description: "This is topic 1",
+      createdAt: "2023-09-23T04:06:24.743Z",
+      updatedAt: "2023-09-23T04:27:31.622Z",
+    },
+  ];
 
   return (
     <>
